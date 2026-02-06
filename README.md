@@ -1,58 +1,46 @@
-# DIO - Trilha .NET - API e Entity Framework
-www.dio.me
+# 📝 Sistema Gerenciador de Tarefas - API & Entity Framework
 
-## Desafio de projeto
-Para este desafio, você precisará usar seus conhecimentos adquiridos no módulo de API e Entity Framework, da trilha .NET da DIO.
+Este projeto foi desenvolvido como um desafio técnico para a trilha .NET da **DIO (Digital Innovation One)**. O objetivo principal foi construir uma Web API robusta para gerenciamento de tarefas, aplicando conceitos de CRUD e persistência de dados.
 
-## Contexto
-Você precisa construir um sistema gerenciador de tarefas, onde você poderá cadastrar uma lista de tarefas que permitirá organizar melhor a sua rotina.
+## 🚀 Desafio e Adaptação Técnica (Diferencial)
+Embora o desafio original sugerisse o uso do SQL Server, optei por utilizar o **Oracle Database Express Edition (XE)** como solução para o banco de dados. 
 
-Essa lista de tarefas precisa ter um CRUD, ou seja, deverá permitir a você obter os registros, criar, salvar e deletar esses registros.
-
-A sua aplicação deverá ser do tipo Web API ou MVC, fique a vontade para implementar a solução que achar mais adequado.
-
-A sua classe principal, a classe de tarefa, deve ser a seguinte:
-
-![Diagrama da classe Tarefa](diagrama.png)
-
-Não se esqueça de gerar a sua migration para atualização no banco de dados.
-
-## Métodos esperados
-É esperado que você crie o seus métodos conforme a seguir:
+Essa escolha exigiu adaptações estratégicas na camada de persistência:
+- **Configuração do Provider:** Implementação do pacote `Oracle.EntityFrameworkCore`.
+- **Mapeamento de Dados:** Uso de Data Annotations (`[Table]`, `[Column]`) para compatibilidade com o schema do Oracle.
+- **Tratamento de Enums:** Configuração da API para persistir Enums como strings, otimizando a leitura no banco e no Swagger.
 
 
-**Swagger**
 
+## 🛠️ Tecnologias Utilizadas
+* **Plataforma:** .NET 6.0 (Web API)
+* **ORM:** Entity Framework Core (EF Core)
+* **Banco de Dados:** Oracle Database XE
+* **Documentação:** Swagger (OpenAPI)
 
-![Métodos Swagger](swagger.png)
+## 🧠 Funcionalidades Implementadas
+A API gerencia um ciclo completo de tarefas, contendo:
+* **CRUD Completo:** Criação, leitura, atualização e deleção de registros.
+* **Filtros Avançados:** Busca de tarefas por Título, Data específica e Status (Pendente/Finalizado).
+* **Migrações:** Gestão do esquema do banco de dados via EF Migrations.
 
+## 📋 Endpoints da API
+Abaixo, os principais métodos expostos pela aplicação:
 
-**Endpoints**
+| Verbo | Endpoint | Parâmetro | Descrição |
+|-------|----------|-----------|-----------|
+| **GET** | `/Tarefa/{id}` | `id` | Busca tarefa por ID |
+| **GET** | `/Tarefa/ObterTodos` | N/A | Lista todas as tarefas |
+| **GET** | `/Tarefa/ObterPorStatus`| `status` | Filtra por Pendente/Finalizado |
+| **POST** | `/Tarefa` | `Body` | Cria uma nova tarefa |
+| **PUT** | `/Tarefa/{id}` | `id`, `Body` | Atualiza dados da tarefa |
+| **DELETE**| `/Tarefa/{id}` | `id` | Remove a tarefa |
 
+## ⚙️ Como Executar
+1. Clone o repositório.
+2. Certifique-se de ter o Oracle XE configurado ou ajuste a ConnectionString no `appsettings.json`.
+3. Execute o comando `dotnet ef database update` para criar as tabelas.
+4. Rode a aplicação com `dotnet run` e acesse o Swagger.
 
-| Verbo  | Endpoint                | Parâmetro | Body          |
-|--------|-------------------------|-----------|---------------|
-| GET    | /Tarefa/{id}            | id        | N/A           |
-| PUT    | /Tarefa/{id}            | id        | Schema Tarefa |
-| DELETE | /Tarefa/{id}            | id        | N/A           |
-| GET    | /Tarefa/ObterTodos      | N/A       | N/A           |
-| GET    | /Tarefa/ObterPorTitulo  | titulo    | N/A           |
-| GET    | /Tarefa/ObterPorData    | data      | N/A           |
-| GET    | /Tarefa/ObterPorStatus  | status    | N/A           |
-| POST   | /Tarefa                 | N/A       | Schema Tarefa |
-
-Esse é o schema (model) de Tarefa, utilizado para passar para os métodos que exigirem
-
-```json
-{
-  "id": 0,
-  "titulo": "string",
-  "descricao": "string",
-  "data": "2022-06-08T01:31:07.056Z",
-  "status": "Pendente"
-}
-```
-
-
-## Solução
-O código está pela metade, e você deverá dar continuidade obedecendo as regras descritas acima, para que no final, tenhamos um programa funcional. Procure pela palavra comentada "TODO" no código, em seguida, implemente conforme as regras acima.
+---
+⭐ Projeto desenvolvido por [Larissa Ribeiro](https://github.com/larissaribeiro-dev) para consolidação de conhecimentos em Back-end com C#.
