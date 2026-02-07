@@ -24,23 +24,23 @@ O desafio consistia em completar um sistema de agendamento de tarefas. A base do
 
 ## 🛠️ Como Executar o Projeto
 
-1. **Clonar o repositório:**
+1. **Clonar o repositório: (bash)**
    ```bash
    git clone https://github.com/SEU_USUARIO/trilha-net-api-desafio.git
    ```
    ```bash
    cd trilha-net-api-desafio/
    ```
-2. **Restaurar dependências:  (Bash)**
+2. **Restaurar dependências:  (bash)**
     ```bash 
     dotnet restore TrilhaApiDesafio.csproj
     ```
-3. **Atualizar o Banco de Dados:**
+3. **Atualizar o Banco de Dados: (bash)**
 * Certifique-se de que a Connection String no appsettings.Development.json está correta e execute:
     ```Bash
     dotnet ef database update --project TrilhaApiDesafio.csproj
     ```
-4. **Executar a API:**
+4. **Executar a API: (bash)**
     ```Bash
     dotnet run --project TrilhaApiDesafio.csproj
     ```
