@@ -93,7 +93,7 @@ A API foi estruturada para atender aos requisitos de negócio, garantindo que to
     ```bash 
     dotnet restore
     ```
-3. **Atualizar o Banco de Dados (Migrations): 
+3. **Atualizar o Banco de Dados (Migrations):**
 * Certifique-se de que a Connection String no appsettings.Development.json está correta e execute:
 **(bash)** 
     ```Bash
