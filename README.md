@@ -56,14 +56,22 @@ Esse é o schema (model) de Tarefa, utilizado para passar para os métodos que e
 
 ## Solução
 
-O desafio consistia em completar um sistema de agendamento de tarefas. A base do projeto já continha as classes de modelo e contexto, e a missão era implementar a lógica nos métodos do Controller para garantir que todas as operações do CRUD estivessem funcionais, obedecendo às seguintes regras:
+A API foi estruturada para atender aos requisitos de negócio, garantindo que todas as operações essenciais estejam funcionais e validadas.
 
-1.  **GET /Tarefa/{id}:** Buscar tarefa por ID.
-2.  **POST /Tarefa:** Adicionar nova tarefa com validação de data.
-3.  **PUT /Tarefa/{id}:** Atualizar tarefa existente.
-4.  **DELETE /Tarefa/{id}:** Remover tarefa do banco.
-5.  **GET /Tarefa/ObterPorTitulo:** Filtro de busca por título.
-6.  **GET /Tarefa/ObterPorStatus:** Filtro de busca por status (Pendente/Finalizado).
+### Endpoints de Consulta (GET)
+
+1.  **```GET /Tarefa/{id}```:** Busca uma tarefa específica pelo seu identificador (ID).
+2. **```GET /Tarefa/ObterTodos:```** Retorna a lista completa de tarefas cadastradas.
+3. **```GET /Tarefa/ObterPorTitulo:```** Filtra tarefas que contenham um termo específico no título.
+4. **```GET /Tarefa/ObterPorData:```** Busca tarefas realizadas em uma data específica (comparação por data, ignorando horário).
+5. **```GET /Tarefa/ObterPorStatus:```** Filtra tarefas pelo status atual (ex: Pendente, Finalizado).
+
+### Endpoints de Manipulação (POST, PUT e DELETE)
+
+1. **```POST /Tarefa:```** Cadastra uma nova tarefa. Possui validação para impedir datas vazias (```DateTime.MinValue```).
+2.  **```PUT /Tarefa/{id}:```** Atualiza os dados de uma tarefa existente.
+3. **```DELETE /Tarefa/{id}:```** Exclui permanentemente uma tarefa do sistema.
+
 ## 🚀 Tecnologias Utilizadas
 
 * **C# / .NET 6** (Framework principal)
@@ -71,32 +79,30 @@ O desafio consistia em completar um sistema de agendamento de tarefas. A base do
 * **Entity Framework Core** (ORM para persistência de dados)
 * **SQL Server (LocalDB)** (Banco de dados relacional)
 * **Swagger / OpenAPI** (Documentação e testes da API)
-* **GitHub Copilot** (Auxílio na escrita de código e lógica)
 
 ## 🛠️ Como Executar o Projeto
 
 1. **Clonar o repositório: (bash)**
    ```bash
-   git clone https://github.com/SEU_USUARIO/trilha-net-api-desafio.git
+   git clone https://github.com/larissaribeiro-dev/trilha-net-api-desafio.git
    ```
    ```bash
    cd trilha-net-api-desafio/
    ```
-2. **Restaurar dependências:  (bash)**
+2. **Restaurar dependências: (bash)**
     ```bash 
-    dotnet restore TrilhaApiDesafio.csproj
+    dotnet restore
     ```
-3. **Atualizar o Banco de Dados: (bash)**
+3. **Atualizar o Banco de Dados (Migrations): 
 * Certifique-se de que a Connection String no appsettings.Development.json está correta e execute:
+**(bash)** 
     ```Bash
-    dotnet ef database update --project TrilhaApiDesafio.csproj
+    dotnet ef database update
     ```
 4. **Executar a API: (bash)**
     ```Bash
-    dotnet run --project TrilhaApiDesafio.csproj
+    dotnet run
     ```
 5. **Acessar a documentação:**  
 * Com a API rodando, acesse: `https://localhost:7295/swagger`  
  
-
----
